@@ -32,9 +32,9 @@ services:
             # commented to use root by default
             # MYSQL_USER: 'some_user'
             # You can use whatever password you like
-            MYSQL_PASSWORD: 'Acit_3855_pa$$'
+            MYSQL_PASSWORD: 'Acit_3855_pass'
             # Password for root access
-            MYSQL_ROOT_PASSWORD: 'Acit_3855_pa$$'
+            MYSQL_ROOT_PASSWORD: 'Acit_3855_pass'
         ports:
             # <Port exposed> : < MySQL Port running inside container>
             - '3306:3306'
