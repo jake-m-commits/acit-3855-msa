@@ -1,0 +1,164 @@
+openapi: 3.0.0
+servers:
+  - url: "http://localhost:8090"
+info:
+  description: This is a simple quiz API
+  version: "1.0.0"
+  title: Simple Quiz API
+  contact:
+    email: jmartin173@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  # /getAns:
+  #   get:
+  #     description: returns an answer
+  #     operationId: app.get_answer
+  #     parameters:
+  #       - name: timestamp
+  #         in: query
+  #         description: limits the number of items on a page
+  #         schema:
+  #           type: string
+  #           format: date-time
+  #           example: 2016-08-29T09:12:33.001Z
+  #     responses:
+  #       '200':
+  #         description: successfully returned answer
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: '#/components/schemas/answerEvent'
+  #       '400':
+  #         description: invalid request
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  # /getQue:
+  #   get:
+  #     description: returns an question
+  #     operationId: app.get_question
+  #     parameters:
+  #       - name: timestamp
+  #         in: query
+  #         description: limits the number of items on a page
+  #         schema:
+  #           type: string
+  #           format: date-time
+  #           example: 2016-08-29T09:12:33.001Z
+  #     responses:
+  #       '200':
+  #         description: successfully returned question
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: '#/components/schemas/questionEvent'
+  #       '400':
+  #         description: invalid request
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  /quizAnswers:
+    post:
+      tags:
+        - admins
+      summary: add answers
+      operationId: app.add_answers
+      description: answers
+      responses:
+        "201":
+          description: receive answer
+        "400":
+          description: "invalid input, object invalid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/answerEvent"
+        description: answer to give
+  /quizQuestions:
+    post:
+      tags:
+        - admins
+      summary: add questions
+      operationId: app.add_questions
+      description: questions
+      responses:
+        "201":
+          description: receive question
+        "400":
+          description: "invalid input, object invalid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/questionEvent"
+        description: question to give
+components:
+  schemas:
+    answerEvent:
+      type: object
+      required:
+        - answer_id
+        - description
+        - answer
+        - randomInt
+        - trace_id
+      properties:
+        answer_id:
+          type: integer
+          example: 0
+        description:
+          type: string
+          example: "answerDescription"
+        answer:
+          type: string
+          example: "This is an answer."
+        randomInt:
+          type: integer
+          example: 1
+        trace_id:
+          type: string
+          example: ""
+    questionEvent:
+      type: object
+      required:
+        - question_id
+        - description
+        - question
+        - randomInt
+        - trace_id
+      properties:
+        question_id:
+          type: integer
+          example: 2
+        description:
+          type: string
+          example: "questionDescription"
+        question:
+          type: string
+          example: "What is a quesiton?"
+        randomInt:
+          type: integer
+          example: 3
+        trace_id:
+          type: string
+          example: ""

@@ -1,0 +1,67 @@
+openapi: 3.0.0
+servers:
+  - url: "http://localhost:8090"
+info:
+  description: This API provides event stats
+  version: "1.0.0"
+  title: Stats API
+  contact:
+    email: jmartin173@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /stats:
+    get:
+      summary: gets event stats
+      operationId: app.get_stats
+      description: get answer and question processed stats
+      responses:
+        "200":
+          description: successfully returned list of events
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/eventStats"
+        "400":
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    eventStats:
+      type: object
+      required:
+        - num_answers
+        - max_randInt_answers
+        - num_questions
+        - max_randInt_questions
+        - last_updated
+      properties:
+        num_answers:
+          type: integer
+          example: 1000
+        max_randInt_answers:
+          type: integer
+          example: 99
+        num_questions:
+          type: integer
+          example: 1000
+        max_randInt_questions:
+          type: integer
+          example: 99
+        last_updated:
+          type: string
+          example: "2020-12-12 12:12:12.000000"

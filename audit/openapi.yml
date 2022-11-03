@@ -1,0 +1,143 @@
+openapi: 3.0.0
+servers:
+  - url: "http://localhost:8088"
+info:
+  description: This is a simple quiz API
+  version: "1.0.0"
+  title: Audit API
+  contact:
+    email: jmartin173@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  /answers:
+    get:
+      summary: add answers
+      operationId: app.get_answer
+      description: answers from the event store
+      parameters:
+        - name: index
+          in: query
+          description: get the answer at index in event store
+          schema:
+            type: integer
+            example: 5
+      responses:
+        "201":
+          description: returned event
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/answerEvent'
+        "400":
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /questions:
+    get:
+      summary: add questions
+      operationId: app.get_question
+      description: questions from the event store
+      parameters:
+        - name: index
+          in: query
+          description: get the question at index in event store
+          schema:
+            type: integer
+            example: 5
+      responses:
+        "201":
+          description: returned event
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/questionEvent'
+        "400":
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  schemas:
+    answerEvent:
+      type: object
+      required:
+        - answer_id
+        - description
+        - answer
+        - randomInt
+        - trace_id
+      properties:
+        answer_id:
+          type: integer
+          example: 0
+        description:
+          type: string
+          example: "answerDescription"
+        answer:
+          type: string
+          example: "This is an answer."
+        randomInt:
+          type: integer
+          example: 1
+        trace_id:
+          type: string
+          example: ""
+    questionEvent:
+      type: object
+      required:
+        - question_id
+        - description
+        - question
+        - randomInt
+        - trace_id
+      properties:
+        question_id:
+          type: integer
+          example: 2
+        description:
+          type: string
+          example: "questionDescription"
+        question:
+          type: string
+          example: "What is a quesiton?"
+        randomInt:
+          type: integer
+          example: 3
+        trace_id:
+          type: string
+          example: ""

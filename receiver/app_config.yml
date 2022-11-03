@@ -1,0 +1,9 @@
+version: 1
+events:
+  host: acit-3855-kafka.jake-m-commits.link
+  port: 9092
+  topic: events
+eventstore_answer:
+  url: http://localhost:8090/quizAnswers
+eventstore_question:
+  url: http://localhost:8090/quizQuestions
