@@ -104,43 +104,43 @@ def add_questions(body):
     return NoContent, 201
 
 
-# def get_answer(timestamp):
-#     """Get answer with timestamp"""
+def get_answer(timestamp):
+    """Get answer with timestamp"""
 
-#     session = DB_SESSION()
-#     timestamp_datetime = dt.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
-#     answers = session.query(Answer).filter(
-#         Answer.date_created >= timestamp_datetime)
-#     results = []
+    session = DB_SESSION()
+    timestamp_datetime = dt.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+    answers = session.query(Answer).filter(
+        Answer.date_created >= timestamp_datetime)
+    results = []
 
-#     for answer in answers:
-#         results.append(answer.to_dict())
+    for answer in answers:
+        results.append(answer.to_dict())
 
-#     session.close()
-#     logger.info(
-#         f"Query for Answers after {timestamp} returns {len(results)} results")
+    session.close()
+    logger.info(
+        f"Query for Answers after {timestamp} returns {len(results)} results")
 
-#     return results, 200
+    return results, 200
 
 
-# def get_question(timestamp):
-#     """Get answer with timestamp"""
+def get_question(timestamp):
+    """Get answer with timestamp"""
 
-#     session = DB_SESSION()
-#     timestamp_datetime = dt.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
-#     questions = session.query(Question).filter(
-#         Question.date_created >= timestamp_datetime
-#     )
-#     results = []
+    session = DB_SESSION()
+    timestamp_datetime = dt.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+    questions = session.query(Question).filter(
+        Question.date_created >= timestamp_datetime
+    )
+    results = []
 
-#     for question in questions:
-#         results.append(question.to_dict())
+    for question in questions:
+        results.append(question.to_dict())
 
-#     session.close()
-#     logger.info(
-#         f"Query for Questions after {timestamp} returns {len(results)} results")
+    session.close()
+    logger.info(
+        f"Query for Questions after {timestamp} returns {len(results)} results")
 
-#     return results, 200
+    return results, 200
 
 
 def process_messages():

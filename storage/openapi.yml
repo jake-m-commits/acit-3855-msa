@@ -16,66 +16,66 @@ tags:
   - name: developers
     description: Operations available to regular developers
 paths:
-  # /getAns:
-  #   get:
-  #     description: returns an answer
-  #     operationId: app.get_answer
-  #     parameters:
-  #       - name: timestamp
-  #         in: query
-  #         description: limits the number of items on a page
-  #         schema:
-  #           type: string
-  #           format: date-time
-  #           example: 2016-08-29T09:12:33.001Z
-  #     responses:
-  #       '200':
-  #         description: successfully returned answer
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: array
-  #               items:
-  #                 $ref: '#/components/schemas/answerEvent'
-  #       '400':
-  #         description: invalid request
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: string
-  # /getQue:
-  #   get:
-  #     description: returns an question
-  #     operationId: app.get_question
-  #     parameters:
-  #       - name: timestamp
-  #         in: query
-  #         description: limits the number of items on a page
-  #         schema:
-  #           type: string
-  #           format: date-time
-  #           example: 2016-08-29T09:12:33.001Z
-  #     responses:
-  #       '200':
-  #         description: successfully returned question
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: array
-  #               items:
-  #                 $ref: '#/components/schemas/questionEvent'
-  #       '400':
-  #         description: invalid request
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: string
+  /getAns:
+    get:
+      description: returns an answer
+      operationId: app.get_answer
+      parameters:
+        - name: timestamp
+          in: query
+          description: limits the number of items on a page
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: successfully returned answer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/answerEvent'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /getQue:
+    get:
+      description: returns an question
+      operationId: app.get_question
+      parameters:
+        - name: timestamp
+          in: query
+          description: limits the number of items on a page
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: successfully returned question
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/questionEvent'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
   /quizAnswers:
     post:
       tags:
