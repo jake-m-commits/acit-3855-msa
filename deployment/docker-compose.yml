@@ -66,5 +66,12 @@ services:
         - "8088:8088"
       depends_on:
         - "kafka"
+    dashboard:
+      image: dashboard:latest
+      ports:
+        - "3000:3000"
+      depends_on:
+        - "processing"
+        - "audit"
 volumes:
     my-db:
